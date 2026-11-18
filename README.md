@@ -14,6 +14,19 @@ npm test                  # integration tests; uses a separate <DB_NAME>_test da
 
 Make a user an admin with `npm run db:make-admin -- someone@example.com`.
 
+### Seed data
+
+`npm run db:seed` adds these development users. The password for all of them is `Password123`; set `SEED_PASSWORD` to use a different one.
+
+| Email | Role | Verified |
+|---|---|---|
+| admin@example.com | admin | yes |
+| alice@example.com | user | yes |
+| bob@example.com | user | yes |
+| carol@example.com | user | no (for testing email verification) |
+
+Running it again skips users that already exist and never changes them. It refuses to run when `NODE_ENV=production`.
+
 When `SMTP_HOST` is empty, emails (verification and reset links) are printed to the server console.
 
 ## Endpoints

@@ -11,6 +11,7 @@
     "dev": "node --watch src/server.js",
     "db:migrate": "node scripts/migrate.js",
     "db:make-admin": "node scripts/make-admin.js",
+    "db:seed": "node scripts/seed.js",
     "test": "node --test tests/*.test.js"
   },
   "dependencies": {

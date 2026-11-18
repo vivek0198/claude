@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-An authentication REST API built with Express 5 and MySQL (via XAMPP). It provides JWT access tokens, rotating refresh tokens, email verification, password reset, user/admin roles and rate limiting. The code uses ES modules (`"type": "module"`) and needs Node 20 or later. There's no build step, linter or TypeScript.
+An authentication REST API built with Express 5 and MySQL (via XAMPP). It provides JWT access tokens, rotating refresh tokens, email verification, password reset, user/admin roles and rate limiting. The code uses CommonJS (`require` / `module.exports`, not `import`) and needs Node 20 or later. Scripts wrap top-level `await` in an async `main()`. There's no build step, linter or TypeScript.
 
 The README lists every endpoint and the security rules (token lifetimes, password rules, rate limits). Read it before changing auth behaviour.
 
@@ -17,7 +17,10 @@ npm run dev                                 # node --watch src/server.js
 npm start
 npm test                                    # node --test tests/*.test.js
 npm run db:make-admin -- someone@example.com
+npm run db:seed                             # dev users (password: Password123, or SEED_PASSWORD)
 ```
+
+- `scripts/seed.js` uses `INSERT IGNORE`, so existing emails are skipped and never overwritten. It refuses to run when `NODE_ENV=production`. It seeds `admin@example.com` (admin), `alice@` and `bob@` (verified users) and `carol@` (unverified).
 
 - MySQL must be running (start it from the XAMPP control panel) for the server, the migration and the tests.
 - `.env` is required. Copy it from `.env.example`. `src/config/index.js` validates it with zod and exits on startup if anything is invalid. For example, `JWT_ACCESS_SECRET` must be at least 32 characters.
