@@ -29,6 +29,10 @@ Running it again skips users that already exist and never changes them. It refus
 
 When `SMTP_HOST` is empty, emails (verification and reset links) are printed to the server console.
 
+## Postman
+
+Import [postman/auth-api.postman_collection.json](postman/auth-api.postman_collection.json). Run **Auth → Login (user)** (or **Admin: users → Login (admin)**) first; it saves the access token, which the protected requests send automatically. For **Verify email** and **Reset password**, copy the `token=` value from the link printed in the server console into the `verifyToken` or `resetToken` collection variable.
+
 ## Endpoints
 
 All auth routes are under `/api/auth`. Routes marked 🔒 need `Authorization: Bearer <accessToken>`.
