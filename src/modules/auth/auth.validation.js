@@ -1,4 +1,4 @@
-const { z } = require('zod');
+import { z } from 'zod';
 
 const email = z
   .string()
@@ -43,7 +43,7 @@ const changePasswordSchema = z.object({
   newPassword: password,
 });
 
-module.exports = {
+export {
   registerSchema,
   loginSchema,
   refreshSchema,

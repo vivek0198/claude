@@ -1,21 +1,23 @@
 // Integration tests. Needs MySQL running; they use a separate database
 // (<DB_NAME>_test) that is created and wiped automatically.
-require('dotenv').config({ quiet: true });
+import dotenv from 'dotenv';
+import { test, before, after } from 'node:test';
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import request from 'supertest';
+
+dotenv.config({ quiet: true });
 process.env.NODE_ENV = 'test';
 process.env.DB_NAME = `${process.env.DB_NAME || 'claude_code_app'}_test`;
 process.env.REQUIRE_EMAIL_VERIFICATION = 'true';
 
-const { test, before, after } = require('node:test');
-const assert = require('node:assert/strict');
-const { execFileSync } = require('node:child_process');
-const request = require('supertest');
-
 execFileSync(process.execPath, ['scripts/migrate.js'], { env: process.env, stdio: 'ignore' });
 
-// Loaded after the env vars above are set, so the app picks up the test config
-const { createApp } = require('../src/app');
-const { pool, query } = require('../src/db/pool');
-const { sentMail } = require('../src/utils/mailer');
+// Dynamic imports: static imports are hoisted and would load the app (and
+// read its config) before the env vars above are set.
+const { createApp } = await import('../src/app.js');
+const { pool, query } = await import('../src/db/pool.js');
+const { sentMail } = await import('../src/utils/mailer.js');
 
 const app = createApp();
 const user = { email: 'Alice@Example.com', password: 'secret123', name: 'Alice' };

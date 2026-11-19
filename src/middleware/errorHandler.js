@@ -1,5 +1,5 @@
-const { AppError } = require('../utils/AppError');
-const { config } = require('../config');
+import { AppError } from '../utils/AppError.js';
+import { config } from '../config/index.js';
 
 function notFound(req, _res, next) {
   next(AppError.notFound(`Route ${req.method} ${req.originalUrl} not found`));
@@ -27,4 +27,4 @@ function errorHandler(err, _req, res, _next) {
   });
 }
 
-module.exports = { notFound, errorHandler };
+export { notFound, errorHandler };

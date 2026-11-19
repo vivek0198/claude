@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-An authentication REST API built with Express 5 and MySQL (via XAMPP). It provides JWT access tokens, rotating refresh tokens, email verification, password reset, user/admin roles and rate limiting. The code uses CommonJS (`require` / `module.exports`, not `import`) and needs Node 20 or later. Scripts wrap top-level `await` in an async `main()`. There's no build step, linter or TypeScript.
+An authentication REST API built with Express 5 and MySQL (via XAMPP). It provides JWT access tokens, rotating refresh tokens, email verification, password reset, user/admin roles and rate limiting. The code uses ES modules (`"type": "module"`; `import` / `export`, not `require`) and needs Node 20 or later. Relative imports must include the `.js` extension (and `/index.js` for directories). Scripts wrap top-level `await` in an async `main()`. There's no build step, linter or TypeScript.
 
 The README lists every endpoint and the security rules (token lifetimes, password rules, rate limits). Read it before changing auth behaviour.
 

@@ -1,4 +1,4 @@
-const { query } = require('../../db/pool');
+import { query } from '../../db/pool.js';
 
 /** Shape returned to API clients. Never includes the password hash. */
 function toPublicUser(row) {
@@ -58,7 +58,7 @@ async function list({ limit, offset }) {
   return { users: rows.map(toPublicUser), total: Number(total) };
 }
 
-module.exports = {
+export {
   toPublicUser,
   findByEmail,
   findById,

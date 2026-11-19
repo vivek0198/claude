@@ -1,5 +1,5 @@
 // Usage: npm run db:make-admin -- someone@example.com
-const { pool, query } = require('../src/db/pool');
+import { pool, query } from '../src/db/pool.js';
 
 async function main() {
   const email = process.argv[2]?.trim().toLowerCase();

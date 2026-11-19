@@ -1,10 +1,10 @@
-const bcrypt = require('bcryptjs');
-const { config } = require('../../config');
-const { withTransaction } = require('../../db/pool');
-const { AppError } = require('../../utils/AppError');
-const { sendMail } = require('../../utils/mailer');
-const users = require('../users/user.repository');
-const {
+import bcrypt from 'bcryptjs';
+import { config } from '../../config/index.js';
+import { withTransaction } from '../../db/pool.js';
+import { AppError } from '../../utils/AppError.js';
+import { sendMail } from '../../utils/mailer.js';
+import * as users from '../users/user.repository.js';
+import {
   TOKEN_TYPES,
   consumeUserToken,
   createUserToken,
@@ -13,7 +13,7 @@ const {
   revokeByToken,
   rotateRefreshToken,
   signAccessToken,
-} = require('./token.service');
+} from './token.service.js';
 
 const BCRYPT_ROUNDS = config.env === 'test' ? 4 : 12;
 
@@ -164,7 +164,7 @@ async function changePassword(userId, { currentPassword, newPassword }, meta) {
   return startSession(user, meta);
 }
 
-module.exports = {
+export {
   register,
   login,
   refresh,

@@ -3,9 +3,9 @@
 //
 // Usage: npm run db:seed
 //        SEED_PASSWORD=MyPass123 npm run db:seed   (default password: Password123)
-const bcrypt = require('bcryptjs');
-const { config } = require('../src/config');
-const { pool, query } = require('../src/db/pool');
+import bcrypt from 'bcryptjs';
+import { config } from '../src/config/index.js';
+import { pool, query } from '../src/db/pool.js';
 
 const PASSWORD = process.env.SEED_PASSWORD || 'Password123';
 

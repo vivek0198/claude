@@ -1,5 +1,5 @@
-const { verifyAccessToken } = require('../modules/auth/token.service');
-const { AppError } = require('../utils/AppError');
+import { verifyAccessToken } from '../modules/auth/token.service.js';
+import { AppError } from '../utils/AppError.js';
 
 /**
  * Requires a valid access token in "Authorization: Bearer <token>".
@@ -24,4 +24,4 @@ function authenticate(req, _res, next) {
   }
 }
 
-module.exports = { authenticate };
+export { authenticate };

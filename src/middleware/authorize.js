@@ -1,4 +1,4 @@
-const { AppError } = require('../utils/AppError');
+import { AppError } from '../utils/AppError.js';
 
 /**
  * Restricts a route to the given roles. Use after authenticate:
@@ -12,4 +12,4 @@ const authorize =
     return next();
   };
 
-module.exports = { authorize };
+export { authorize };

@@ -1,5 +1,5 @@
-const mysql = require('mysql2/promise');
-const { config } = require('../config');
+import mysql from 'mysql2/promise';
+import { config } from '../config/index.js';
 
 const pool = mysql.createPool({
   ...config.db,
@@ -30,4 +30,4 @@ async function withTransaction(fn) {
   }
 }
 
-module.exports = { pool, query, withTransaction };
+export { pool, query, withTransaction };

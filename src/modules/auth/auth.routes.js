@@ -1,9 +1,9 @@
-const { Router } = require('express');
-const { authenticate } = require('../../middleware/authenticate');
-const { validate } = require('../../middleware/validate');
-const { authLimiter, emailLimiter, loginLimiter, registerLimiter } = require('../../middleware/rateLimit');
-const c = require('./auth.controller');
-const s = require('./auth.validation');
+import { Router } from 'express';
+import { authenticate } from '../../middleware/authenticate.js';
+import { validate } from '../../middleware/validate.js';
+import { authLimiter, emailLimiter, loginLimiter, registerLimiter } from '../../middleware/rateLimit.js';
+import * as c from './auth.controller.js';
+import * as s from './auth.validation.js';
 
 // Express 5 forwards rejected promises from async handlers to the error handler.
 const router = Router();
@@ -24,4 +24,4 @@ router.post('/forgot-password', emailLimiter, validate(s.emailOnlySchema), c.for
 router.post('/reset-password', validate(s.resetPasswordSchema), c.resetPassword);
 router.post('/change-password', authenticate, validate(s.changePasswordSchema), c.changePassword);
 
-module.exports = router;
+export default router;

@@ -1,4 +1,4 @@
-const { AppError } = require('../utils/AppError');
+import { AppError } from '../utils/AppError.js';
 
 /** Validates req[source] against a zod schema and replaces it with the parsed value. */
 const validate =
@@ -17,4 +17,4 @@ const validate =
     return next();
   };
 
-module.exports = { validate };
+export { validate };

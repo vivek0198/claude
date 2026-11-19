@@ -1,9 +1,9 @@
-const crypto = require('node:crypto');
-const jwt = require('jsonwebtoken');
-const { config } = require('../../config');
-const { query, withTransaction } = require('../../db/pool');
-const { randomToken, sha256 } = require('../../utils/crypto');
-const { AppError } = require('../../utils/AppError');
+import crypto from 'node:crypto';
+import jwt from 'jsonwebtoken';
+import { config } from '../../config/index.js';
+import { query, withTransaction } from '../../db/pool.js';
+import { randomToken, sha256 } from '../../utils/crypto.js';
+import { AppError } from '../../utils/AppError.js';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -137,7 +137,7 @@ async function consumeUserToken(rawToken, { type }, conn) {
   return row.user_id;
 }
 
-module.exports = {
+export {
   signAccessToken,
   verifyAccessToken,
   issueRefreshToken,

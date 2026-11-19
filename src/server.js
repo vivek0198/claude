@@ -1,6 +1,6 @@
-const { createApp } = require('./app');
-const { config } = require('./config');
-const { pool } = require('./db/pool');
+import { createApp } from './app.js';
+import { config } from './config/index.js';
+import { pool } from './db/pool.js';
 
 async function start() {
   // Fail fast if the database isn't reachable

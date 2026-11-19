@@ -1,12 +1,11 @@
 // Creates the database if it's missing, then applies src/db/schema.sql.
-const fs = require('node:fs/promises');
-const path = require('node:path');
-const mysql = require('mysql2/promise');
-const { config } = require('../src/config');
+import fs from 'node:fs/promises';
+import mysql from 'mysql2/promise';
+import { config } from '../src/config/index.js';
 
 async function main() {
   const { database, ...conn } = config.db;
-  const sql = await fs.readFile(path.join(__dirname, '../src/db/schema.sql'), 'utf8');
+  const sql = await fs.readFile(new URL('../src/db/schema.sql', import.meta.url), 'utf8');
 
   const connection = await mysql.createConnection({ ...conn, multipleStatements: true });
   try {

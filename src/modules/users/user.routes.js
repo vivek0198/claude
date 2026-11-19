@@ -1,10 +1,10 @@
-const { Router } = require('express');
-const { z } = require('zod');
-const { authenticate } = require('../../middleware/authenticate');
-const { authorize } = require('../../middleware/authorize');
-const { validate } = require('../../middleware/validate');
-const { AppError } = require('../../utils/AppError');
-const users = require('./user.repository');
+import { Router } from 'express';
+import { z } from 'zod';
+import { authenticate } from '../../middleware/authenticate.js';
+import { authorize } from '../../middleware/authorize.js';
+import { validate } from '../../middleware/validate.js';
+import { AppError } from '../../utils/AppError.js';
+import * as users from './user.repository.js';
 
 // Admin-only user management, as an example of role-based access.
 const router = Router();
@@ -31,4 +31,4 @@ router.patch('/:id/role', validate(idParams, 'params'), validate(roleBody), asyn
   res.json({ user: users.toPublicUser(await users.findById(id)) });
 });
 
-module.exports = router;
+export default router;

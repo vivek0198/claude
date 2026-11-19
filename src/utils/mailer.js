@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
-const { config } = require('../config');
+import nodemailer from 'nodemailer';
+import { config } from '../config/index.js';
 
 const transport = config.mail.host
   ? nodemailer.createTransport({
@@ -28,4 +28,4 @@ async function sendMail({ to, subject, text }) {
   await transport.sendMail({ from: config.mail.from, to, subject, text });
 }
 
-module.exports = { sendMail, sentMail };
+export { sendMail, sentMail };

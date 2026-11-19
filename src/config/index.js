@@ -1,5 +1,7 @@
-require('dotenv').config({ quiet: true });
-const { z } = require('zod');
+import dotenv from 'dotenv';
+import { z } from 'zod';
+
+dotenv.config({ quiet: true });
 
 const bool = z
   .enum(['true', 'false', '1', '0'])
@@ -67,4 +69,4 @@ const config = {
   },
 };
 
-module.exports = { config };
+export { config };

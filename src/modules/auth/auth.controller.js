@@ -1,5 +1,5 @@
-const { config } = require('../../config');
-const auth = require('./auth.service');
+import { config } from '../../config/index.js';
+import * as auth from './auth.service.js';
 
 const REFRESH_COOKIE = 'refreshToken';
 
@@ -83,7 +83,7 @@ async function changePassword(req, res) {
   sendSession(res, await auth.changePassword(req.user.id, req.body, requestMeta(req)));
 }
 
-module.exports = {
+export {
   REFRESH_COOKIE,
   register,
   login,

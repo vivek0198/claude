@@ -1,5 +1,5 @@
-const { rateLimit, ipKeyGenerator } = require('express-rate-limit');
-const { config } = require('../config');
+import { rateLimit, ipKeyGenerator } from 'express-rate-limit';
+import { config } from '../config/index.js';
 
 const base = {
   standardHeaders: 'draft-8',
@@ -38,4 +38,4 @@ const emailLimiter = rateLimit({
 /** General limit for the rest of /api/auth: 100 per 15 min per IP. */
 const authLimiter = rateLimit({ ...base, windowMs: 15 * 60 * 1000, limit: 100 });
 
-module.exports = { loginLimiter, registerLimiter, emailLimiter, authLimiter };
+export { loginLimiter, registerLimiter, emailLimiter, authLimiter };

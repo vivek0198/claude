@@ -1,9 +1,9 @@
-const express = require('express');
-const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
-const authRoutes = require('./modules/auth/auth.routes');
-const userRoutes = require('./modules/users/user.routes');
-const { errorHandler, notFound } = require('./middleware/errorHandler');
+import express from 'express';
+import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
+import authRoutes from './modules/auth/auth.routes.js';
+import userRoutes from './modules/users/user.routes.js';
+import { errorHandler, notFound } from './middleware/errorHandler.js';
 
 function createApp() {
   const app = express();
@@ -26,4 +26,4 @@ function createApp() {
   return app;
 }
 
-module.exports = { createApp };
+export { createApp };
